@@ -53,3 +53,8 @@ online disk
 attributes disk clear readonly
 "@
 ```
+
+#Notes
+
+* Thanks to Adam Conkle for the [disk part parsing pieces](https://gallery.technet.microsoft.com/DiskPartexe-Powershell-0f7a1bab).
+* This was written as a component to help simplify [migrating to the Paravirtual SCSI Controller](http://www.davidklee.net/2014/01/08/retrofit-a-vm-with-the-vmware-paravirtual-scsi-driver/).  I've seen disks come up offline more often than not.
