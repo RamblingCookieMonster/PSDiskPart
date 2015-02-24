@@ -26,29 +26,30 @@ Online a disk
 
 #Instructions
 
-    # One time setup
-        # Download the repository
-        # Unblock the zip
-        # Extract the PSDiskPart folder to a module path (e.g. $env:USERPROFILE\Documents\WindowsPowerShell\Modules\)
+```powershell
+# One time setup
+    # Download the repository
+    # Unblock the zip
+    # Extract the PSDiskPart folder to a module path (e.g. $env:USERPROFILE\Documents\WindowsPowerShell\Modules\)
 
-    # Import the module.
-        Import-Module PSDiskPart    #Alternatively, Import-Module \\Path\To\PSDiskPart
+# Import the module.
+    Import-Module PSDiskPart    #Alternatively, Import-Module \\Path\To\PSDiskPart
 
-    # Get commands in the module
-        Get-Command -Module PSDiskPart
+# Get commands in the module
+    Get-Command -Module PSDiskPart
 
-    # Get help for a command
-        Get-Help Get-DiskPartDisk -Full
+# Get help for a command
+    Get-Help Get-DiskPartDisk -Full
 
-    # Get details about disks on the local computer and c-is-hyperv-1
-        Get-DiskPartDisk -computername $ENV:COMPUTERNAME, c-is-hyperv-1
+# Get details about disks on the local computer and c-is-hyperv-1
+    Get-DiskPartDisk -computername $ENV:COMPUTERNAME, c-is-hyperv-1
 
-    # Run a DiskPart script on SERVER1145, set disk 2 to online, clear the readonly attribute if it exists
-    # Mind the here string.  Ugly formatting necessary!
+# Run a DiskPart script on SERVER1145, set disk 2 to online, clear the readonly attribute if it exists
+# Mind the here string.  Ugly formatting necessary!
     
-        Invoke-DiskPartScript -ComputerName SERVER1145 -DiskPartText @"
+Invoke-DiskPartScript -ComputerName SERVER1145 -DiskPartText @"
 select disk 2
 online disk
 attributes disk clear readonly
 "@
-
+```
