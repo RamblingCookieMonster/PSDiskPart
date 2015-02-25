@@ -58,3 +58,7 @@ attributes disk clear readonly
 
 * Thanks to Adam Conkle for the [disk part parsing pieces](https://gallery.technet.microsoft.com/DiskPartexe-Powershell-0f7a1bab).
 * This was written as a component to help simplify [migrating to the Paravirtual SCSI Controller](http://www.davidklee.net/2014/01/08/retrofit-a-vm-with-the-vmware-paravirtual-scsi-driver/).  I've seen disks come up offline more often than not.
+* Accompanying [blog post](https://ramblingcookiemonster.wordpress.com/2015/02/24/remotely-brick-a-system/) (pretty much the stuff above, with more rambling)
+* TODO: More Pester tests
+* TODO: Refactor some of the DiskPart parsing.  For example, PowerShell users might expect 'Yes' to be true, 'no' to be false
+* TODO: Add parameters to Get commands.  For example, one should be able to get a specific disk, or limit output to 'list disk', rather than force 'detail disk'.
