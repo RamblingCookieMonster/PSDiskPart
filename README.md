@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/u6gtkc7on8nm4kpi/branch/master?svg=true)](https://ci.appveyor.com/project/RamblingCookieMonster/psdiskpart)
+
 DiskPart PowerShell Module
 =============
 
