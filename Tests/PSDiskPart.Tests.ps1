@@ -9,7 +9,7 @@ Describe 'Invoke-DiskPartScript' {
         It 'Should list disks on a local system' {
 
             $OutString = Invoke-DiskPartScript -ComputerName $env:COMPUTERNAME -DiskPartText "list disk" -Raw
-            $OutArray = ($out -split "`n") | Where-Object { $_ -match "[A-Za-z0-9]"}
+            $OutArray = ($OutString -split "`n") | Where-Object { $_ -match "[A-Za-z0-9]"}
             
             #Hopefully you have at least one disk.
             $OutArray.Count | Should BeGreaterThan 4
