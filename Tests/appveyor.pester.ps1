@@ -46,7 +46,7 @@ param([switch]$Finalize)
             $Results = @( Get-ChildItem -Path "$ProjectRoot\PesterResults*.xml" | Import-Clixml )
             
             $FailedCount = $Results |
-                Select -ExpandProperty FailedCount
+                Select -ExpandProperty FailedCount |
                 Measure-Object -Sum |
                 Select -ExpandProperty Sum
     
