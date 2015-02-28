@@ -20,7 +20,6 @@ param([switch]$Finalize)
         Import-Module Pester
 
         Invoke-Pester -Path "$ProjectRoot\Tests" -OutputFormat NUnitXml -OutputFile "$ProjectRoot\$TestFile" -PassThru |
-            Select -ExpandProperty FailedCount |
             Export-Clixml -Path "$ProjectRoot\PesterResults$PSVersion.xml"
     }
 
