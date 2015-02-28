@@ -238,7 +238,14 @@ Function Invoke-DiskPartScript {
                 }
                 else
                 {
-                    $results = Get-Content -Path $remoteTempOutputFile -Raw
+                    if($PSVersionTable.PSVersion.Major -ge 3)
+                    {
+                        $results = Get-Content -Path $remoteTempOutputFile -Raw
+                    }
+                    else
+                    {
+                        $results = ( Get-Content -Path $remoteTempOutputFile -ReadCount 1500 ) -join "`n"
+                    }
                 }
             }
             else
