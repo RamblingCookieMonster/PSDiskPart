@@ -1,4 +1,10 @@
-﻿#Get public and private function definition files.
+﻿#handle PS2
+    if(-not $PSScriptRoot)
+    {
+        $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
+    }
+
+#Get public and private function definition files.
     $Public  = Get-ChildItem $PSScriptRoot\*.ps1 -ErrorAction SilentlyContinue 
     $Private = Get-ChildItem $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue 
 
