@@ -1,5 +1,5 @@
 skip_commits:
-  message: /updated readme/       # Regex for matching commit message
+  message: /updated readme.*/
 
 install:
   - cinst pester
