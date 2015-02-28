@@ -1,5 +1,6 @@
 $PSVersion = $PSVersionTable.PSVersion.Major
 $TestFile = "TestsResults$($PSVersionTable.PSVersion.Major).xml"
+Import-Module Pester
 
 #Run a test with the current version of PowerShell
     Write-Output "Testing with PowerShell $PSVersion"
