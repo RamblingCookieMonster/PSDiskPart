@@ -7,7 +7,7 @@ param([switch]$Finalize)
 
 #Initialize some variables, move to the project root
     $PSVersion = $PSVersionTable.PSVersion.Major
-    $TestFile = "TestsResults$PSVersion.xml"
+    $TestFile = "TestsResultsPS$PSVersion.xml"
     $ProjectRoot = $ENV:APPVEYOR_BUILD_FOLDER
     Set-Location $ProjectRoot
    
@@ -15,7 +15,7 @@ param([switch]$Finalize)
 #Run a test with the current version of PowerShell
 if(-not $Finalize)
 {
-    Write-Output "STATUS: Testing with PowerShell $PSVersion`n"
+    "`n`tSTATUS: Testing with PowerShell $PSVersion`n"
     
     Import-Module Pester
 
@@ -26,24 +26,29 @@ if(-not $Finalize)
 #If finalize is specified, check for failures and 
 else
 {
-    Write-Output "STATUS: Collating results`n"
+    #Show status...
+        $AllFiles = Get-ChildItem -Path $ProjectRoot\*Results*.xml | Select -ExpandProperty FullName
+        "`n`tSTATUS: Finalizing results`n"
+        "COLLATING FILES:`n$($AllFiles | Out-String)"
 
-    $FailedCount = Get-ChildItem -Path "$ProjectRoot\PesterResults*.xml" |
-        Import-Clixml | 
-        Measure-Object -Sum |
-        Select -ExpandProperty Sum
+    #Upload results for test page
+        Get-ChildItem -Path "$ProjectRoot\TestResultsPS*.xml" | Foreach-Object {
+        
+            $Address = "https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)"
+            $Source = $_.FullName
 
-    Get-ChildItem -Path "$ProjectRoot\TestResults*.xml" | Foreach-Object {
+            "UPLOADING FILES: $Address $Source"
 
-        $Destination = "https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)"
-        $Source = $_.FullName
+            (New-Object 'System.Net.WebClient').UploadFile( $Address, $Source )
+        }
 
-        (New-Object 'System.Net.WebClient').UploadFile( $Destination, $Source )
-    }
-
-    #Upload test output - you can see results on the 'Test' page
-
-    if ($FailedCount -gt 0) {
-        throw "$FailedCount tests failed."
-    }
+    #What failed?
+        $FailedCount = Get-ChildItem -Path "$ProjectRoot\PesterResults*.xml" |
+            Import-Clixml | 
+            Measure-Object -Sum |
+            Select -ExpandProperty Sum
+    
+        if ($FailedCount -gt 0) {
+            throw "$FailedCount tests failed."
+        }
 }
