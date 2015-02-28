@@ -1,11 +1,14 @@
 $PSVersion = $PSVersionTable.PSVersion.Major
 $TestFile = "TestsResults$($PSVersionTable.PSVersion.Major).xml"
-#http://www.appveyor.com/docs/environment-variables
-$ProjectRoot = $ENV:APPVEYOR_BUILD_FOLDER
 
-Import-Module Pester
+#Change to the project path that we assume in pester
+    #http://www.appveyor.com/docs/environment-variables
+    $ProjectRoot = $ENV:APPVEYOR_BUILD_FOLDER
+    Set-LocalGroup $ProjectRoot
+
 
 #Run a test with the current version of PowerShell
+    Import-Module Pester
     Write-Output "Testing with PowerShell $PSVersion"
     $PesterOutput = Invoke-Pester -Path "$ProjectRoot\Tests" -OutputFormat NUnitXml -OutputFile "$ProjectRoot\$TestFile" -PassThru
 
