@@ -4,11 +4,12 @@ if(-not $PSScriptRoot)
     $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 }
 
+$PSVersion = $PSVersionTable.PSVersion.Major
 Import-Module -Force $PSScriptRoot\..\PSDiskPart
 
 Describe 'Invoke-DiskPartScript' {
     
-    Context 'Strict mode' { 
+    Context "Strict mode PS$PSVersion" { 
 
         Set-StrictMode -Version latest
 
@@ -28,7 +29,7 @@ Describe 'Invoke-DiskPartScript' {
 
 Describe 'Get-DiskPartDisk' {
     
-    Context 'Strict mode' { 
+    Context "Strict mode PS$PSVersion" { 
 
         Set-StrictMode -Version latest
 
@@ -44,7 +45,7 @@ Describe 'Get-DiskPartDisk' {
 
 Describe 'Get-DiskPartVolume' {
     
-    Context 'Strict mode' { 
+    Context "Strict mode PS$PSVersion" { 
 
         Set-StrictMode -Version latest
 
