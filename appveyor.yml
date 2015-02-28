@@ -1,6 +1,6 @@
 # See http://www.appveyor.com/docs/appveyor-yml for many more options
 
-# Don't skip on updates to the readme.
+# Skip on updates to the readme.
 # We can force this by adding [skip ci] or [ci skip] anywhere in commit message 
 skip_commits:
   message: /updated readme.*/
@@ -12,3 +12,4 @@ build: false
 
 test_script:
   - ps: . .\Tests\appveyor.pester.ps1
+  - ps: powershell.exe -executionpolicy bypass -noprofile -version 2.0 -file .\Tests\appveyor.pester.ps1
