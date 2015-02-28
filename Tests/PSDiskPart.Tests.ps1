@@ -7,13 +7,15 @@ if(-not $PSScriptRoot)
 $PSVersion = $PSVersionTable.PSVersion.Major
 Import-Module -Force $PSScriptRoot\..\PSDiskPart
 
-Describe 'Invoke-DiskPartScript' {
+
+#This is more appropriate for context, but we include PSVersion in the It blocks to differentiate in AppVeyor
+Describe "Invoke-DiskPartScript"  {
     
-    Context "Strict mode PS$PSVersion" { 
+    Context "Strict mode" { 
 
         Set-StrictMode -Version latest
 
-        It 'Should list disks on a local system' {
+        It "Should list disks on a local system PS$PSVersion" {
 
             $OutString = Invoke-DiskPartScript -ComputerName $env:COMPUTERNAME -DiskPartText "list disk" -Raw
             $OutArray = ($OutString -split "`n") | Where-Object { $_ -match "[A-Za-z0-9]"}
@@ -27,13 +29,13 @@ Describe 'Invoke-DiskPartScript' {
     }
 }
 
-Describe 'Get-DiskPartDisk' {
+Describe "Get-DiskPartDisk" {
     
-    Context "Strict mode PS$PSVersion" { 
+    Context "Strict mode" { 
 
         Set-StrictMode -Version latest
 
-        It 'Should list disks on a local system' {
+        It "Should list disks on a local system PS$PSVersion" {
 
             $OutArray = @( Get-DiskPartDisk -ComputerName $env:COMPUTERNAME )
             
@@ -43,13 +45,13 @@ Describe 'Get-DiskPartDisk' {
     }
 }
 
-Describe 'Get-DiskPartVolume' {
+Describe "Get-DiskPartVolume"  {
     
-    Context "Strict mode PS$PSVersion" { 
+    Context "Strict mode" { 
 
         Set-StrictMode -Version latest
 
-        It 'Should list volumes on a local system' {
+        It "Should list volumes on a local system PS$PSVersion" {
 
             $OutArray = @( Get-DiskPartVolume -ComputerName $env:COMPUTERNAME )
             
