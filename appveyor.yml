@@ -12,4 +12,4 @@ build: false
 
 test_script:
   - ps: . .\Tests\appveyor.pester.ps1
-  - ps: & "powershell.exe -executionpolicy bypass -noprofile -version 2.0 -file .\Tests\appveyor.pester.ps1"
+  - cmd: powershell.exe -executionpolicy bypass -noprofile -version 2.0 -file %APPVEYOR_BUILD_FOLDER%\Tests\appveyor.pester.ps1
