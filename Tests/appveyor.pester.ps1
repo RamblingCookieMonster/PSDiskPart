@@ -4,7 +4,7 @@ $TestFile = "TestsResults$($PSVersionTable.PSVersion.Major).xml"
 #Change to the project path that we assume in pester
     #http://www.appveyor.com/docs/environment-variables
     $ProjectRoot = $ENV:APPVEYOR_BUILD_FOLDER
-    Set-LocalGroup $ProjectRoot
+    Set-Location $ProjectRoot
 
 
 #Run a test with the current version of PowerShell
