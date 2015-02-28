@@ -1,3 +1,9 @@
+#handle PS2
+if(-not $PSScriptRoot)
+{
+    $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
+}
+
 Import-Module -Force $PSScriptRoot\..\PSDiskPart
 
 Describe 'Invoke-DiskPartScript' {
