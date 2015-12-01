@@ -180,26 +180,28 @@ Function Get-DiskPartDisk
 	
 	            New-Object -TypeName PSObject -Property $DiskObj |
                     Select-Object -Property ComputerName,
-	                DiskNumber,
-	                Status,
-	                Size,
-	                Free,
-	                Dyn,
-	                Gpt,
-                    DiskID,
-                    DetailType,
-                    DetailStatus,
-                    Path,
-                    Target,
-                    LUNID,
-                    LocationPath,
-                    CurrentReadOnlyState,
-                    ReadOnly,
-                    BootDisk,
-                    PagefileDisk,
-                    HibernationFileDisk,
-                    CrashdumpDisk,
-                    ClusteredDisk
+	                    DiskNumber,
+	                    Status,
+	                    Size,
+	                    Free,
+	                    Dyn,
+	                    Gpt,
+                        DiskID,
+                        DetailType,
+                        DetailStatus,
+                        Path,
+                        Target,
+                        LUNID,
+                        LocationPath,
+                        CurrentReadOnlyState,
+                        ReadOnly,
+                        BootDisk,
+                        PagefileDisk,
+                        HibernationFileDisk,
+                        CrashdumpDisk,
+                        ClusteredDisk |
+                    Add-ObjectDetail -TypeName 'DiskPart.Disk'
+
             }
         }
     }

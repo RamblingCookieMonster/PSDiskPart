@@ -21,9 +21,8 @@
         }
         Catch
         {
-            Write-Error "Failed to import function $($import.fullname)"
+            Write-Error "Failed to import function '$($import.fullname)'"
         }
     }
-    
-#Create some aliases, export public functions
-    Export-ModuleMember -Function $($Public | Select -ExpandProperty BaseName) -Alias *
+
+# We export functions in the psd1 file

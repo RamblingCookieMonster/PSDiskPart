@@ -163,23 +163,24 @@ Function Get-DiskPartVolume
 	
 	            New-Object -TypeName PSObject -Property $VolObj |
                     Select-Object -Property ComputerName,
-                    VolumeNumber,
-                    Letter,
-                    Label,
-                    FileSystem,
-                    Type,
-                    Size,
-                    Status,
-                    Info,
-                    ReadOnly,
-                    Hidden,
-                    NoDefaultDriveLetter,
-                    ShadowCopy,
-                    Offline,
-                    BitLockerEncrypted,
-                    Installable,
-                    VolumeCapacity,
-                    VolumeFreeSpace
+                        VolumeNumber,
+                        Letter,
+                        Label,
+                        FileSystem,
+                        Type,
+                        Size,
+                        Status,
+                        Info,
+                        ReadOnly,
+                        Hidden,
+                        NoDefaultDriveLetter,
+                        ShadowCopy,
+                        Offline,
+                        BitLockerEncrypted,
+                        Installable,
+                        VolumeCapacity,
+                        VolumeFreeSpace |
+                    Add-ObjectDetail -TypeName 'DiskPart.Volume'
             }
         }
     }

@@ -52,13 +52,18 @@ PowerShellVersion = '2.0'
 # TypesToProcess = @()
 
 # Format files (.ps1xml) to be loaded when importing this module
-# FormatsToProcess = @()
+FormatsToProcess = @('PSDiskPart.Format.ps1xml')
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 # NestedModules = @()
 
 # Functions to export from this module
-# FunctionsToExport = '*'
+FunctionsToExport = @(
+                        'Get-DiskPartDisk',
+                        'Get-DiskPartVDisk',
+                        'Get-DiskPartVolume',
+                        'Invoke-DiskPartScript'
+                    )
 
 # Cmdlets to export from this module
 # CmdletsToExport = '*'
